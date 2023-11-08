@@ -1,13 +1,13 @@
 torchrun --nproc_per_node=4 --master_port=34322 llm-processing/train/Platypus/finetune.py \
     --base_model hyunseoki/ko-en-llama2-13b \
-    --data-path data/tmt/v2.jsonl \
-    --output_dir ./ckpt/llama2_tmt-13b-v2 \
+    --data-path data/CoT_2000/response/output_files_input.jsonl \
+    --output_dir ./ckpt/ko-llama2-13b-n1 \
     --batch_size 128 \
     --micro_batch_size 32 \
-    --num_epochs 30 \
-    --learning_rate 0.0001 \
+    --num_epochs 10 \
+    --learning_rate 0.0004 \
     --cutoff_len 1024 \
-    --val_set_size 100 \
+    --val_set_size 70 \
     --lora_r 16 \
     --lora_alpha 16 \
     --lora_dropout 0.05 \
@@ -15,9 +15,9 @@ torchrun --nproc_per_node=4 --master_port=34322 llm-processing/train/Platypus/fi
     --train_on_inputs False \
     --add_eos_token False \
     --group_by_length False \
-    --prompt_template_name jiwoochris \
+    --prompt_template_name alpaca \
     --lr_scheduler 'cosine' \
     --warmup_steps 100 \
     --wandb_project "llm" \
-    --wandb_run_name "llama2_tmt-13b-v2" \
+    --wandb_run_name "ko-llama2-13b-n1" \
     --wandb_watch "all"
